@@ -7,18 +7,43 @@
 
 import UIKit
 
-
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var userName: UITextField!
-    var viewModel: LoginViewModelProtocol!
     @IBOutlet weak var resultLabel: UILabel!
+    
+    private var viewModel: LoginViewModelProtocol
+
+    init?(coder: NSCoder, viewModel: LoginViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("You must create this view controller with a viewmodel.")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        viewModel = LoginViewModel(withView: self, service: ApiServiceFactory.create())
+        viewModel = LoginViewModel(service: ApiServiceFactory.create())
+        viewModelBind()
+    }
+    
+    private func viewModelBind() {
+        viewModel.onSuccess = { [weak self] user in
+            DispatchQueue.main.async {
+                self?.resultLabel.text = user.displayName
+            }
+        }
+        
+        viewModel.onError = { [weak self] message in
+            DispatchQueue.main.async {
+                self?.resultLabel.text = message
+            }
+        }
     }
 
     @IBAction func loginButtonDidTapped(_ sender: Any) {
@@ -32,19 +57,5 @@ class LoginViewController: UIViewController {
         
         loginViewController.modalPresentationStyle = .fullScreen
         show(loginViewController, sender: nil)
-    }
-}
-
-extension LoginViewController: LoginViewProtocol {
-    func showSuccess(_ user: User) {
-        DispatchQueue.main.async {
-            self.resultLabel.text = user.displayName
-        }
-    }
-    
-    func showError(message: String) {
-        DispatchQueue.main.async {
-            self.resultLabel.text = message
-        }
     }
 }

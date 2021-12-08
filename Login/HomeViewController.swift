@@ -18,8 +18,15 @@ class HomeViewController: UIViewController {
     @IBAction func loginButtonPressed(_ sender: Any) {
         let bundle = Bundle(for: HomeViewController.self)
         let storyboard = UIStoryboard(name: "Login", bundle: bundle)
-        guard let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController else { return }
-        loginViewController.modalPresentationStyle = .overFullScreen
+        let viewModel = LoginViewModel(service: ApiServiceFactory.create())
+       
+        guard let loginViewController = storyboard.instantiateViewController(identifier: "LoginViewController", creator: { coder in
+            return LoginViewController(coder: coder, viewModel: viewModel)
+        }) as? LoginViewController else {
+            fatalError("Failed to load EditUserViewController from storyboard.")
+        }
+        
+        loginViewController.modalPresentationStyle = .fullScreen
         show(loginViewController, sender: nil)
     }
     

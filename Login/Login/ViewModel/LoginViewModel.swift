@@ -8,22 +8,21 @@
 import Foundation
 
 protocol LoginViewModelProtocol {
-    init(withView view: LoginViewProtocol, service: ApiServiceProtocol)
+    init(service: ApiServiceProtocol)
     func login(userName: String, password: String)
-}
-
-protocol LoginViewProtocol {
-    func showSuccess(_ user: User)
-    func showError(message: String)
+    
+    var onSuccess: ((User) -> ())? {get set}
+    var onError: ((String) -> ())? {get set}
 }
 
 class LoginViewModel: LoginViewModelProtocol {
-    var view: LoginViewProtocol
+    var onSuccess: ((User) -> ())?
+    var onError: ((String) -> ())?
+    
     var service: ApiServiceProtocol
     var model: LoginModel
     
-    required init(withView view: LoginViewProtocol, service: ApiServiceProtocol) {
-        self.view = view
+    required init(service: ApiServiceProtocol) {
         self.service = service
         self.model = LoginModel()
     }
@@ -36,15 +35,15 @@ class LoginViewModel: LoginViewModelProtocol {
             case .success(let data):
                 
                 guard let user = try? JSONDecoder().decode(User.self, from: data) else {
-                    self.view.showError(message: "Could Not Decode")
+                    self.onError?("could not decode")
                     return
                 }
                 
                 self.model.user = user
-                self.view.showSuccess(user)
+                self.onSuccess?(user)
                 break
             case .failure(let error):
-                self.view.showError(message: error.message())
+                self.onError?(error.message())
                 print(error)
                 break
             }
