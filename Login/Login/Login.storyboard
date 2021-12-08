@@ -114,7 +114,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="XMz-sP-C7S"/>
                     <connections>
+                        <outlet property="password" destination="DPc-eV-vAz" id="p4F-zS-DJb"/>
                         <outlet property="resultLabel" destination="LuW-Xe-gyD" id="btp-Fv-wF6"/>
+                        <outlet property="userName" destination="C4n-Wg-39s" id="yIU-O4-gZW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fc-L1-trl" sceneMemberID="firstResponder"/>

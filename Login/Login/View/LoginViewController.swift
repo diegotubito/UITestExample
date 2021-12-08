@@ -10,17 +10,19 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var userName: UITextField!
     var viewModel: LoginViewModelProtocol!
     @IBOutlet weak var resultLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        viewModel = LoginViewModel(withView: self, service: ApiService())
+        viewModel = LoginViewModel(withView: self, service: ApiServiceFactory.create())
     }
 
     @IBAction func loginButtonDidTapped(_ sender: Any) {
-        viewModel.login(userName: "diego", password: "david")
+        viewModel.login(userName: userName.text ?? "", password: password.text ?? "")
     }
     
     private func routeToHome() {
@@ -34,9 +36,9 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: LoginViewProtocol {
-    func showSuccess(dictionary: [String : Any]) {
+    func showSuccess(_ user: User) {
         DispatchQueue.main.async {
-            self.resultLabel.text = "success"
+            self.resultLabel.text = user.displayName
         }
     }
     

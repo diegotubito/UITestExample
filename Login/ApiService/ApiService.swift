@@ -7,8 +7,22 @@
 
 import Foundation
 
-class ApiService {
-    func downloadData(request: URLRequest, completionBlock: @escaping (Result<Data, APIError>) -> Void) {
+class ApiServiceFactory {
+    static func create() -> ApiServiceProtocol {
+        if ProcessInfo.processInfo.environment["ENV"] == "NOT_TESTING" {
+            return ApiService()
+        } else {
+            return ApiServiceMock()
+        }
+    }
+}
+
+protocol ApiServiceProtocol {
+    func fetch(request: URLRequest, completionBlock: @escaping (Result<Data, APIError>) -> Void)
+}
+
+class ApiService: ApiServiceProtocol {
+    func fetch(request: URLRequest, completionBlock: @escaping (Result<Data, APIError>) -> Void) {
      
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: {data , urlresponse, error in
@@ -26,7 +40,7 @@ class ApiService {
             let status = response.statusCode
             guard (200...299).contains(status) else {
                 let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                let message : String = (json?["errorMessage"] as? String) ?? "error code \(status)"
+                let message : String = (json?["message"] as? String) ?? "error code \(status)"
                 completionBlock(.failure(.customError(message: message, code: status)))
                 return
             }
@@ -37,7 +51,7 @@ class ApiService {
     }
 }
 
-enum APIError: Error, CustomStringConvertible {
+enum APIError: Equatable, Error, CustomStringConvertible {
     case invalidToken
     case serverError
     case notFound

@@ -10,60 +10,39 @@ import Foundation
 class Request {
     // Add necessary endpoint here
      enum EndpointType {
-        case helloWorld
-        case closeDatabaseSession(query: String)
+         case Login(userName: String, password: String)
     }
     
     private static func getPath(endpointName: EndpointType) -> String {
         switch endpointName {
-        case .helloWorld:
-            return ""
-        case .closeDatabaseSession:
-            return "cerrar"
+        case .Login(userName: _, password: _):
+            return "v1/firebase/auth/login"
         }
     }
     
     private static func getMethod(endpointName: EndpointType) -> String {
         switch endpointName {
-        case .helloWorld:
-            return "GET"
-        case .closeDatabaseSession:
-            return "GET"
+        case .Login(userName: _, password: _):
+            return "POST"
         }
     }
     
     private static func getBody(endpointName: EndpointType) -> [String: Any]? {
         switch endpointName {
-        case .helloWorld:
-            return nil
-        case .closeDatabaseSession:
-            return nil
+        case .Login(userName: let userName, password: let password):
+            let body = ["email": userName,
+                        "password": password] as [String: Any]
+            return body
         }
     }
     
     private static func getQuery(endpointName: EndpointType) -> String? {
         switch endpointName {
-        case .helloWorld:
+        case .Login(userName: _, password: _):
             return nil
-        case .closeDatabaseSession(let query):
-            return query
         }
     }
-    
-    public func mockData(endpointName: Request.EndpointType) -> Data {
-        var dictionary: [String: Any]
-        
-        switch endpointName {
-        case .helloWorld:
-            dictionary = ["id": "123456"]
-        case .closeDatabaseSession(_):
-            dictionary = ["id": "123456"]
-        }
-        
-        let data = try! JSONSerialization.data(withJSONObject: dictionary, options: [])
-        return data
-        
-    }
+
 }
 
 extension Request {
