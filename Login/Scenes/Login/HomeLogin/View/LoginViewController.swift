@@ -7,22 +7,24 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, Storyboarded {
     
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var resultLabel: UILabel!
     
-    private var viewModel: LoginViewModelProtocol
-
-    init?(coder: NSCoder, viewModel: LoginViewModelProtocol) {
-        self.viewModel = viewModel
-        super.init(coder: coder)
-    }
+    weak var coordinator: LoginCoordinator?
     
-    required init?(coder: NSCoder) {
-        fatalError("You must create this view controller with a viewmodel.")
-    }
+    private var viewModel: LoginViewModelProtocol!
+
+//    init?(coder: NSCoder, viewModel: LoginViewModelProtocol) {
+//        self.viewModel = viewModel
+//        super.init(coder: coder)
+//    }
+//    
+//    required init?(coder: NSCoder) {
+//        fatalError("You must create this view controller with a viewmodel.")
+//    }
     
     
     override func viewDidLoad() {

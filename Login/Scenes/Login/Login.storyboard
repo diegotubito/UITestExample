@@ -121,7 +121,103 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fc-L1-trl" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="138.61607142857142"/>
+            <point key="canvasLocation" x="714" y="31"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ST1-YN-co0">
+            <objects>
+                <viewController id="Jkw-QA-DKH" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MJb-3Q-XTT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yn-Zx-EeB">
+                                <rect key="frame" x="16" y="60" width="382" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="XYa-d5-XOB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7yn-Zx-EeB" firstAttribute="leading" secondItem="XYa-d5-XOB" secondAttribute="leading" constant="16" id="0FY-Pu-nvm"/>
+                            <constraint firstItem="XYa-d5-XOB" firstAttribute="trailing" secondItem="7yn-Zx-EeB" secondAttribute="trailing" constant="16" id="1ke-6H-hoa"/>
+                            <constraint firstItem="7yn-Zx-EeB" firstAttribute="centerX" secondItem="MJb-3Q-XTT" secondAttribute="centerX" id="FhJ-L8-qbU"/>
+                            <constraint firstItem="7yn-Zx-EeB" firstAttribute="top" secondItem="XYa-d5-XOB" secondAttribute="top" constant="16" id="jQx-f4-CYv"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lQD-iY-MAq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1513" y="27"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="rKS-oy-4L6">
+            <objects>
+                <viewController id="IYI-mh-ltO" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pid-fA-j4x">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registrations - Step 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NV1-22-kaG">
+                                <rect key="frame" x="16" y="60" width="382" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Nhw-jO-XKq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Nhw-jO-XKq" firstAttribute="trailing" secondItem="NV1-22-kaG" secondAttribute="trailing" constant="16" id="80d-4D-kl9"/>
+                            <constraint firstItem="NV1-22-kaG" firstAttribute="leading" secondItem="Nhw-jO-XKq" secondAttribute="leading" constant="16" id="LBN-jZ-FdK"/>
+                            <constraint firstItem="NV1-22-kaG" firstAttribute="top" secondItem="Nhw-jO-XKq" secondAttribute="top" constant="16" id="p0Z-MC-91a"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OsE-vw-oTd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="713" y="753"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="1Us-ff-iF9">
+            <objects>
+                <viewController id="NfZ-8b-BBr" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jgX-me-rA5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registrations - Step 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lnt-Lb-Vya">
+                                <rect key="frame" x="16" y="60" width="382" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a3l-mU-Zkk">
+                                <rect key="frame" x="16" y="815" width="382" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="YFS-ca-v9Z"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Terms and Conditions"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cSo-ZI-QTm"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Lnt-Lb-Vya" firstAttribute="top" secondItem="cSo-ZI-QTm" secondAttribute="top" constant="16" id="5Xs-h7-dfy"/>
+                            <constraint firstItem="cSo-ZI-QTm" firstAttribute="trailing" secondItem="a3l-mU-Zkk" secondAttribute="trailing" constant="16" id="H4o-dY-2YR"/>
+                            <constraint firstItem="cSo-ZI-QTm" firstAttribute="bottom" secondItem="a3l-mU-Zkk" secondAttribute="bottom" constant="16" id="JSh-AV-9cr"/>
+                            <constraint firstItem="cSo-ZI-QTm" firstAttribute="trailing" secondItem="Lnt-Lb-Vya" secondAttribute="trailing" constant="16" id="kq2-Gc-Tfp"/>
+                            <constraint firstItem="a3l-mU-Zkk" firstAttribute="leading" secondItem="cSo-ZI-QTm" secondAttribute="leading" constant="16" id="mah-Jb-Pii"/>
+                            <constraint firstItem="Lnt-Lb-Vya" firstAttribute="leading" secondItem="cSo-ZI-QTm" secondAttribute="leading" constant="16" id="xhm-YB-REm"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9JL-ay-1zs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1484" y="753"/>
         </scene>
     </scenes>
     <resources>
