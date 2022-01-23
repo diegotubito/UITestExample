@@ -18,14 +18,46 @@ class ApiServiceFactory {
 }
 
 protocol ApiServiceProtocol {
-    func fetch(request: URLRequest, completionBlock: @escaping (Result<Data, APIError>) -> Void)
+    func fetch(request: URLRequest, completionBlock: @escaping (Result<User, APIError>) -> Void)
+    func cancel()
 }
 
 class ApiService: ApiServiceProtocol {
-    func fetch(request: URLRequest, completionBlock: @escaping (Result<Data, APIError>) -> Void) {
+    let session: URLSession
+    var task: URLSessionDataTask!
+    
+    init() {
+        session = URLSession.shared
+    }
+    
+    func cancel() {
+        guard let task = task else { return }
+        task.cancel()
+    }
+    
+    func fetch<T: Decodable>(request: URLRequest, completionBlock: @escaping (Result<T, APIError>) -> Void) {
+        api(request: request) { response in
+            switch(response) {
+            case .success(let data):
+            
+                do {
+                    let decodedData = try JSONDecoder().decode(T.self, from: data)
+                    completionBlock(.success(decodedData))
+                } catch {
+                    completionBlock(.failure(.serialize))
+                }
+       
+                break
+            case .failure(let error):
+                completionBlock(.failure(error))
+                break
+            }
+        }
+    }
+    
+    func api(request: URLRequest, completionBlock: @escaping (Result<Data, APIError>) -> Void) {
      
-        let session = URLSession.shared
-        let task = session.dataTask(with: request, completionHandler: {data , urlresponse, error in
+         task = session.dataTask(with: request, completionHandler: {data , urlresponse, error in
             if let error = error {
                 completionBlock(.failure(APIError.customError(message: error.localizedDescription, code: 500)))
                 return
@@ -48,6 +80,7 @@ class ApiService: ApiServiceProtocol {
             
         })
         task.resume()
+        
     }
 }
 
@@ -56,6 +89,7 @@ enum APIError: Equatable, Error, CustomStringConvertible {
     case serverError
     case notFound
     case notHandleError
+    case serialize
     case customError(message: String, code: Int)
     
     func message() -> String {
@@ -68,6 +102,8 @@ enum APIError: Equatable, Error, CustomStringConvertible {
             return "404_NOT_FOUND"
         case .notHandleError:
             return "NOT_HANDLE_ERROR"
+        case .serialize:
+            return "SERIALIZE_ERROR"
         case .customError(message: let message, code: _):
             return message
         }
@@ -83,6 +119,8 @@ enum APIError: Equatable, Error, CustomStringConvertible {
             return 404
         case .notHandleError:
             return -1
+        case .serialize:
+            return 400
         case .customError(message: _, code: let code):
             return code
         }

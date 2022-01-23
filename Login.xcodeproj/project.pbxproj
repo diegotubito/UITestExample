@@ -17,6 +17,7 @@
 		F120C7812760BEAD00368418 /* LoginSuccessResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = F120C7802760BEAD00368418 /* LoginSuccessResponse.json */; };
 		F120C7842760C3AE00368418 /* ApiServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F120C77E2760BE4A00368418 /* ApiServiceMock.swift */; };
 		F120C7852760C3B100368418 /* LoginSuccessResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = F120C7802760BEAD00368418 /* LoginSuccessResponse.json */; };
+		F120EA65279B904000EF39A6 /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F120EA64279B904000EF39A6 /* LoginUseCase.swift */; };
 		F1FD6956275F711000536406 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FD6955275F711000536406 /* AppDelegate.swift */; };
 		F1FD695A275F711100536406 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FD6959275F711100536406 /* HomeViewController.swift */; };
 		F1FD695D275F711100536406 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1FD695B275F711100536406 /* Main.storyboard */; };
@@ -56,6 +57,7 @@
 		F109FED527654AAC00054E1F /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		F120C77E2760BE4A00368418 /* ApiServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceMock.swift; sourceTree = "<group>"; };
 		F120C7802760BEAD00368418 /* LoginSuccessResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoginSuccessResponse.json; sourceTree = "<group>"; };
+		F120EA64279B904000EF39A6 /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
 		F1FD6952275F711000536406 /* Login.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Login.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1FD6955275F711000536406 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1FD6959275F711100536406 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -70,7 +72,7 @@
 		F1FD6985275F743C00536406 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		F1FD6989275F747B00536406 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F1FD6992275FFCA100536406 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		F1FD6994275FFCF400536406 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		F1FD6994275FFCF400536406 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginModel.swift; path = ../../Model/LoginModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,9 +150,9 @@
 			isa = PBXGroup;
 			children = (
 				F109FED22765495800054E1F /* Navigation */,
-				F1FD698C275F775800536406 /* Model */,
-				F1FD698B275F775500536406 /* ViewModel */,
 				F1FD6988275F747200536406 /* View */,
+				F1FD698B275F775500536406 /* ViewModel */,
+				F120EA63279B903200EF39A6 /* Usecase */,
 			);
 			path = HomeLogin;
 			sourceTree = "<group>";
@@ -176,6 +178,22 @@
 				F120C7802760BEAD00368418 /* LoginSuccessResponse.json */,
 			);
 			path = Mock;
+			sourceTree = "<group>";
+		};
+		F120EA63279B903200EF39A6 /* Usecase */ = {
+			isa = PBXGroup;
+			children = (
+				F120EA64279B904000EF39A6 /* LoginUseCase.swift */,
+			);
+			path = Usecase;
+			sourceTree = "<group>";
+		};
+		F120EA6A279B91D100EF39A6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F1FD6994275FFCF400536406 /* LoginModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		F1FD6949275F711000536406 = {
@@ -249,17 +267,10 @@
 		F1FD698B275F775500536406 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				F120EA6A279B91D100EF39A6 /* Model */,
 				F1FD6992275FFCA100536406 /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		F1FD698C275F775800536406 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				F1FD6994275FFCF400536406 /* LoginModel.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		F1FD698D275FFB6D00536406 /* ApiService */ = {
@@ -416,6 +427,7 @@
 				F120C7842760C3AE00368418 /* ApiServiceMock.swift in Sources */,
 				F109FEC62761636B00054E1F /* ApiService.swift in Sources */,
 				F109FECE276523F900054E1F /* LaunchViewController.swift in Sources */,
+				F120EA65279B904000EF39A6 /* LoginUseCase.swift in Sources */,
 				F1FD6956275F711000536406 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

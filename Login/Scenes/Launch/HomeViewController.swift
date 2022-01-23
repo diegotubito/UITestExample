@@ -13,7 +13,7 @@ class HomeViewController: UIViewController, Storyboarded {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+       
     }
 
     @IBAction func loginButtonPressed(_ sender: Any) {
@@ -21,4 +21,3 @@ class HomeViewController: UIViewController, Storyboarded {
     }
     
 }
-

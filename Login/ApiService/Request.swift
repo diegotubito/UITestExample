@@ -60,7 +60,7 @@ extension Request {
         return URL(string: stringUrl)
     }
     
-    static func endpoint(to: EndpointType) -> URLRequest {
+    public static func endpoint(to: EndpointType) -> URLRequest {
         let token = ""
         
         guard let url = getUrl(endpointName: to) else {

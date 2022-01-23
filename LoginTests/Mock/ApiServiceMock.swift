@@ -9,6 +9,26 @@ import Foundation
 @testable import Login
 
 class ApiServiceMock: ApiServiceProtocol {
+    func cancel() {
+        
+    }
+    
+    func fetch<T: Decodable>(request: URLRequest, completionBlock: @escaping (Result<T, APIError>) -> Void) {
+        let bundle = Bundle(for: ApiServiceMock.self)
+        
+        guard let data = readLocalFile(bundle: bundle, forName: "LoginSuccessResponse") else {
+            completionBlock(.failure(APIError.notFound))
+            return
+        }
+        
+        guard let decodeData = try? JSONDecoder().decode(T.self, from: data) else {
+            completionBlock(.failure(APIError.notFound))
+            return
+        }
+        
+        completionBlock(.success(decodeData))
+    }
+    
     var complete: ((Data?, APIError?) -> ())?
     
     init(_ complete: ((Data?, APIError?) -> ())? = nil) {
@@ -16,7 +36,7 @@ class ApiServiceMock: ApiServiceProtocol {
     }
     
     //this method is used in ui test
-    func fetch(request: URLRequest, completionBlock: @escaping (Result<Data, APIError>) -> Void) {
+    private func api(request: URLRequest, completionBlock: @escaping (Result<Data, APIError>) -> Void) {
         let bundle = Bundle(for: ApiServiceMock.self)
         
         guard let data = readLocalFile(bundle: bundle, forName: "LoginSuccessResponse") else {
