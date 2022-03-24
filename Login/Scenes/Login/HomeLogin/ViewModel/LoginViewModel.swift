@@ -44,13 +44,11 @@ class LoginViewModel: LoginViewModelProtocol {
     }
 }
 
-
 class LoginUseCaseFactory {
     static let shared = LoginUseCaseFactory()
     
     static func create() -> LoginUseCaseProtocol {
-        let param = ProcessInfo.processInfo.environment["ENV"]
-        if param == "NOT_TESTING" {
+        if ProcessInfo.processInfo.environment["ENV"] == "NOT_TESTING" {
             return LoginUseCase()
         }
         return LoginUseCaseMock()

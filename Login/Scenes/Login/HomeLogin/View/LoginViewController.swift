@@ -76,10 +76,6 @@ class LoginViewController: BaseViewController<LoginViewControllerAnalytics>, Sto
     }
 }
 
-
-
-
-
 class BaseViewController<TAnalytic>: UIViewController where TAnalytic: BaseAnalyticProtocol {
     var analytics: TAnalytic!
     
@@ -97,14 +93,6 @@ class BaseViewController<TAnalytic>: UIViewController where TAnalytic: BaseAnaly
         fatalError("Must override and init Analytics on \(identifier)")
     }
 }
-
-
-
-
-
-
-
-
 
 protocol BaseAnalyticProtocol: AnyObject {
     func trackScreen()
@@ -133,12 +121,6 @@ class BaseAnalytic: BaseAnalyticProtocol {
         }
     }
 }
-
-
-
-
-
-
 
 protocol AnalyticsRepositoryProtocol {
     func trackScreen(name: String, completion: () -> ())
