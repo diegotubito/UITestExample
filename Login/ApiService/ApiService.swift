@@ -8,9 +8,24 @@
 import Foundation
 
 class ApiCallMock {
-    public func api<T: Decodable>(filename: String, completionBlock: @escaping (Result<T, APIError>) -> Void) {
-        guard let data = readLocalFile(bundle: .main, forName: filename) else {
+    var error: APIError? = APIError.customError(message: "The password is invalid or the user does not have a password.", code: 503)
+    
+    public func api<T: Decodable>(completionBlock: @escaping (Result<T, APIError>) -> Void) {
+        let file = ProcessInfo.processInfo.environment["FILENAME"] ?? ""
+        let testFail = ProcessInfo.processInfo.arguments.contains("-testFail")
+        
+        guard let data = readLocalFile(bundle: .main, forName: file) else {
             completionBlock(.failure(APIError.notFound))
+            return
+        }
+        
+        if testFail {
+            let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
+            let message : String = (json?["message"] as? String) ?? "no message"
+            let code : String = (json?["code"] as? String) ?? "no code"
+            
+            let error = APIError.customError(message: message, code: Int(code) ?? 0)
+            completionBlock(.failure(error))
             return
         }
         
@@ -19,13 +34,15 @@ class ApiCallMock {
             return
         }
         
-        completionBlock(.success(register))
+        completionBlock(.success(register))        
     }
     
     private func readLocalFile(bundle: Bundle, forName name: String) -> Data? {
-        let bundlePath = bundle.path(forResource: name, ofType: "json")
-        let jsonData = try? String(contentsOfFile: bundlePath!).data(using: .utf8)
-        return jsonData
+        guard let bundlePath = bundle.path(forResource: name, ofType: "json") else {
+            fatalError("file \(name).json doesn't exist")
+        }
+        
+        return try? String(contentsOfFile: bundlePath).data(using: .utf8)
     }
 }
 
@@ -90,7 +107,6 @@ class ApiCall {
             
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                
                 let status = response.statusCode
                 guard (200...299).contains(status) else {
                     let message : String = (json?["message"] as? String) ?? "error code \(status)"

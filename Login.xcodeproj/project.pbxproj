@@ -15,6 +15,7 @@
 		F120C7852760C3B100368418 /* LoginSuccessResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = F120C7802760BEAD00368418 /* LoginSuccessResponse.json */; };
 		F120EA65279B904000EF39A6 /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F120EA64279B904000EF39A6 /* LoginUseCase.swift */; };
 		F1725C6727EC080B008CBCF5 /* LoginUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725C6627EC080B008CBCF5 /* LoginUseCaseTest.swift */; };
+		F1725C6F27ECB139008CBCF5 /* LoginWrongPassword.json in Resources */ = {isa = PBXBuildFile; fileRef = F1725C6D27EC2197008CBCF5 /* LoginWrongPassword.json */; };
 		F18012C3279F7A2300D528F7 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18012C2279F7A2300D528F7 /* UserModel.swift */; };
 		F18012C5279F7AC300D528F7 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18012C4279F7AC300D528F7 /* LoginModel.swift */; };
 		F18012C8279F7B7400D528F7 /* LoginDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18012C7279F7B7400D528F7 /* LoginDataSource.swift */; };
@@ -58,6 +59,7 @@
 		F120C7802760BEAD00368418 /* LoginSuccessResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoginSuccessResponse.json; sourceTree = "<group>"; };
 		F120EA64279B904000EF39A6 /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
 		F1725C6627EC080B008CBCF5 /* LoginUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCaseTest.swift; sourceTree = "<group>"; };
+		F1725C6D27EC2197008CBCF5 /* LoginWrongPassword.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoginWrongPassword.json; sourceTree = "<group>"; };
 		F18012C2279F7A2300D528F7 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		F18012C4279F7AC300D528F7 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		F18012C7279F7B7400D528F7 /* LoginDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataSource.swift; sourceTree = "<group>"; };
@@ -130,7 +132,6 @@
 			children = (
 				F1FD6963275F711200536406 /* Info.plist */,
 				F1FD695E275F711200536406 /* Assets.xcassets */,
-				F120C77D2760BE4000368418 /* Mock */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -182,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				F120C7802760BEAD00368418 /* LoginSuccessResponse.json */,
+				F1725C6D27EC2197008CBCF5 /* LoginWrongPassword.json */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -248,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				F1FD6976275F711200536406 /* LoginUITests.swift */,
+				F120C77D2760BE4000368418 /* Mock */,
 			);
 			path = LoginUITests;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1725C6F27ECB139008CBCF5 /* LoginWrongPassword.json in Resources */,
 				F1FD6986275F743C00536406 /* Login.storyboard in Resources */,
 				F1FD6962275F711200536406 /* LaunchScreen.storyboard in Resources */,
 				F120C7852760C3B100368418 /* LoginSuccessResponse.json in Resources */,

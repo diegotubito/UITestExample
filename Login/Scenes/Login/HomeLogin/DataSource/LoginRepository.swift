@@ -27,7 +27,7 @@ class LoginRepository: ApiCall, LoginRepositoryProtocol {
 
 class LoginRepositoryMock: ApiCallMock, LoginRepositoryProtocol {
     func doLogin(requestBody: LoginDataSource.Request, token: String, completion: @escaping CustomResult<User>) {
-        api(filename: "LoginSuccessResponse") { result in
+        api() { result in
             completion(result)
         }
     }
