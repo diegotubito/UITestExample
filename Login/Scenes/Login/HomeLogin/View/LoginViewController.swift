@@ -7,13 +7,7 @@
 
 import UIKit
 
-class LoginViewControllerAnalytics: BaseAnalytic {
-    func someCustomEventFromLogin() {
-        event(params: ["somekey":"some value"])
-    }
-}
-
-class LoginViewController: BaseViewController<LoginViewControllerAnalytics>, Storyboarded {
+class LoginViewController: BaseViewController<LoginAnalytics>, Storyboarded {
     
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var userName: UITextField!
@@ -32,8 +26,12 @@ class LoginViewController: BaseViewController<LoginViewControllerAnalytics>, Sto
 //        fatalError("You must create this view controller with a viewmodel.")
 //    }
     
-    override func initAnalytics() {
-        analytics = LoginViewControllerAnalytics()
+    override var analyticPlatform: AnalyticPlatforms {
+        return .All
+    }
+    
+    override func analyticsInit() {
+        analytics = LoginAnalytics()
     }
     
     override func viewDidLoad() {
@@ -43,12 +41,13 @@ class LoginViewController: BaseViewController<LoginViewControllerAnalytics>, Sto
         buttonOutlet.addTarget(self, action: #selector(buttonTapped), for: .touchDown)
         viewModel = LoginViewModel()
         viewModelBind()
-        
-        analytics.someCustomEventFromLogin()
+    
     }
     
     @objc func buttonTapped() {
+        analytics.customEvent(platform: .All)
         viewModel.login(userName: userName.text ?? "", password: password.text ?? "")
+        
     }
     
     private func viewModelBind() {
@@ -73,95 +72,5 @@ class LoginViewController: BaseViewController<LoginViewControllerAnalytics>, Sto
         
         loginViewController.modalPresentationStyle = .fullScreen
         show(loginViewController, sender: nil)
-    }
-}
-
-class BaseViewController<TAnalytic>: UIViewController where TAnalytic: BaseAnalyticProtocol {
-    var analytics: TAnalytic!
-    
-    private var identifier: String {
-        return String(describing: type(of: self))
-    }
-    
-    override func viewDidLoad() {
-        super .viewDidLoad()
-        initAnalytics()
-        analytics.trackScreen()
-    }
-    
-    internal func initAnalytics() {
-        fatalError("Must override and init Analytics on \(identifier)")
-    }
-}
-
-protocol BaseAnalyticProtocol: AnyObject {
-    func trackScreen()
-    func event(params: [String: Any])
-}
-
-class BaseAnalytic: BaseAnalyticProtocol {
-    private var analyticsRepository: AnalyticsRepositoryProtocol
-    
-    private var identifier: String {
-        return String(describing: type(of: self))
-    }
-    
-    init(analyticsRepository: AnalyticsRepositoryProtocol = AnalyticsRepository()) {
-        self.analyticsRepository = analyticsRepository
-    }
-    
-    /* Conforming protocol BaseAnalyticProtocol */
-    func event(params: [String: Any]) {
-        
-    }
-    
-    func trackScreen() {
-        analyticsRepository.trackScreen(name: "name") {
-           print("screen", "\(identifier)")
-        }
-    }
-}
-
-protocol AnalyticsRepositoryProtocol {
-    func trackScreen(name: String, completion: () -> ())
-}
-
-class AnalyticsRepository: AnalyticsRepositoryProtocol {
-    var firebase: AnalyticsRepositoryFirebaseProtocol
-    
-    init(_ firebase: AnalyticsRepositoryFirebaseProtocol = AnalyticsRepositoryFirebase() ) {
-        self.firebase = firebase
-    }
-    
-    
-    func trackScreen(name: String, completion: () -> ()) {
-        firebase.trackScreen(name: "", parameters: [:])
-        completion()
-    }
-}
-
-// include firebase analytics sdk and uncomment code
-//import FirebaseAnalytics
-
-protocol AnalyticsRepositoryFirebaseProtocol: AnyObject {
-    func trackScreen(name: String, parameters: [String: Any])
-    func trackEvent(event: String, parameters: [String: Any])
-    func setUserID(userId: String)
-}
-
-class AnalyticsRepositoryFirebase: AnalyticsRepositoryFirebaseProtocol {
-    
-    func trackScreen(name: String, parameters: [String: Any]) {
-        var params = parameters
-//        params[AnalyticsParameterScreenName] = name
-//        trackEvent(event: AnalyticsEventScreenView, parameters: params)
-    }
-    
-    func trackEvent(event: String, parameters: [String: Any]) {
-//        Analytics.logEvent(event, parameters: parameters)
-    }
-    
-    func setUserID(userId: String) {
-//        Analytics.setUserID(userId)
     }
 }

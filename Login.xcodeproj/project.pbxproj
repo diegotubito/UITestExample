@@ -16,6 +16,14 @@
 		F120EA65279B904000EF39A6 /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F120EA64279B904000EF39A6 /* LoginUseCase.swift */; };
 		F1725C6727EC080B008CBCF5 /* LoginUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725C6627EC080B008CBCF5 /* LoginUseCaseTest.swift */; };
 		F1725C6F27ECB139008CBCF5 /* login_password_fail.json in Resources */ = {isa = PBXBuildFile; fileRef = F1725C6D27EC2197008CBCF5 /* login_password_fail.json */; };
+		F1725C7227ECC677008CBCF5 /* ApiServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725C7127ECC677008CBCF5 /* ApiServiceMock.swift */; };
+		F1725C7427ECC698008CBCF5 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725C7327ECC698008CBCF5 /* ApiError.swift */; };
+		F1725C7627ECC7B8008CBCF5 /* BaseAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725C7527ECC7B8008CBCF5 /* BaseAnalytics.swift */; };
+		F1725C7827ECC7E3008CBCF5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725C7727ECC7E3008CBCF5 /* BaseViewController.swift */; };
+		F1725C7B27ECC8EE008CBCF5 /* BaseAnalyticModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725C7A27ECC8EE008CBCF5 /* BaseAnalyticModel.swift */; };
+		F1725C7E27ECCA0A008CBCF5 /* LeanplumAnalyticRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725C7D27ECCA0A008CBCF5 /* LeanplumAnalyticRepository.swift */; };
+		F1725C8027ECCA2F008CBCF5 /* FirebaseAnalyticRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725C7F27ECCA2F008CBCF5 /* FirebaseAnalyticRepository.swift */; };
+		F1725C8327ECCA67008CBCF5 /* LoginAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725C8227ECCA67008CBCF5 /* LoginAnalytics.swift */; };
 		F18012C3279F7A2300D528F7 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18012C2279F7A2300D528F7 /* UserModel.swift */; };
 		F18012C5279F7AC300D528F7 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18012C4279F7AC300D528F7 /* LoginModel.swift */; };
 		F18012C8279F7B7400D528F7 /* LoginDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18012C7279F7B7400D528F7 /* LoginDataSource.swift */; };
@@ -60,6 +68,14 @@
 		F120EA64279B904000EF39A6 /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
 		F1725C6627EC080B008CBCF5 /* LoginUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCaseTest.swift; sourceTree = "<group>"; };
 		F1725C6D27EC2197008CBCF5 /* login_password_fail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = login_password_fail.json; sourceTree = "<group>"; };
+		F1725C7127ECC677008CBCF5 /* ApiServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceMock.swift; sourceTree = "<group>"; };
+		F1725C7327ECC698008CBCF5 /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		F1725C7527ECC7B8008CBCF5 /* BaseAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAnalytics.swift; sourceTree = "<group>"; };
+		F1725C7727ECC7E3008CBCF5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		F1725C7A27ECC8EE008CBCF5 /* BaseAnalyticModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAnalyticModel.swift; sourceTree = "<group>"; };
+		F1725C7D27ECCA0A008CBCF5 /* LeanplumAnalyticRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeanplumAnalyticRepository.swift; sourceTree = "<group>"; };
+		F1725C7F27ECCA2F008CBCF5 /* FirebaseAnalyticRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticRepository.swift; sourceTree = "<group>"; };
+		F1725C8227ECCA67008CBCF5 /* LoginAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAnalytics.swift; sourceTree = "<group>"; };
 		F18012C2279F7A2300D528F7 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		F18012C4279F7AC300D528F7 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		F18012C7279F7B7400D528F7 /* LoginDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataSource.swift; sourceTree = "<group>"; };
@@ -141,6 +157,8 @@
 			children = (
 				F109FED02765445E00054E1F /* Coordinator.swift */,
 				F18012C2279F7A2300D528F7 /* UserModel.swift */,
+				F1725C7727ECC7E3008CBCF5 /* BaseViewController.swift */,
+				F1725C7927ECC8E1008CBCF5 /* Analytics */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -156,6 +174,7 @@
 		F109FED72765610C00054E1F /* HomeLogin */ = {
 			isa = PBXGroup;
 			children = (
+				F1725C8127ECCA5D008CBCF5 /* Analytics */,
 				F109FED22765495800054E1F /* Navigation */,
 				F1FD6988275F747200536406 /* View */,
 				F1FD698B275F775500536406 /* ViewModel */,
@@ -202,6 +221,32 @@
 				F1725C6D27EC2197008CBCF5 /* login_password_fail.json */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		F1725C7927ECC8E1008CBCF5 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				F1725C7527ECC7B8008CBCF5 /* BaseAnalytics.swift */,
+				F1725C7A27ECC8EE008CBCF5 /* BaseAnalyticModel.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		F1725C7C27ECC9FC008CBCF5 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				F1725C7D27ECCA0A008CBCF5 /* LeanplumAnalyticRepository.swift */,
+				F1725C7F27ECCA2F008CBCF5 /* FirebaseAnalyticRepository.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		F1725C8127ECCA5D008CBCF5 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				F1725C8227ECCA67008CBCF5 /* LoginAnalytics.swift */,
+			);
+			path = Analytics;
 			sourceTree = "<group>";
 		};
 		F18012C6279F7B5A00D528F7 /* DataSource */ = {
@@ -294,7 +339,10 @@
 		F1FD698D275FFB6D00536406 /* ApiService */ = {
 			isa = PBXGroup;
 			children = (
+				F1725C7C27ECC9FC008CBCF5 /* Analytics */,
 				F109FEC42761636A00054E1F /* ApiService.swift */,
+				F1725C7127ECC677008CBCF5 /* ApiServiceMock.swift */,
+				F1725C7327ECC698008CBCF5 /* ApiError.swift */,
 			);
 			path = ApiService;
 			sourceTree = "<group>";
@@ -439,17 +487,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1725C7E27ECCA0A008CBCF5 /* LeanplumAnalyticRepository.swift in Sources */,
 				F1FD698A275F747B00536406 /* LoginViewController.swift in Sources */,
 				F18012C5279F7AC300D528F7 /* LoginModel.swift in Sources */,
 				F109FED12765445E00054E1F /* Coordinator.swift in Sources */,
 				F1FD695A275F711100536406 /* HomeViewController.swift in Sources */,
 				F109FED627654AAC00054E1F /* HomeCoordinator.swift in Sources */,
+				F1725C7827ECC7E3008CBCF5 /* BaseViewController.swift in Sources */,
 				F18012C3279F7A2300D528F7 /* UserModel.swift in Sources */,
+				F1725C8327ECCA67008CBCF5 /* LoginAnalytics.swift in Sources */,
+				F1725C7627ECC7B8008CBCF5 /* BaseAnalytics.swift in Sources */,
+				F1725C7227ECC677008CBCF5 /* ApiServiceMock.swift in Sources */,
 				F18012C8279F7B7400D528F7 /* LoginDataSource.swift in Sources */,
 				F1FD6993275FFCA100536406 /* LoginViewModel.swift in Sources */,
 				F18012CA279F7B8100D528F7 /* LoginRepository.swift in Sources */,
 				F109FED42765496C00054E1F /* LoginCoordinator.swift in Sources */,
 				F109FEC62761636B00054E1F /* ApiService.swift in Sources */,
+				F1725C7427ECC698008CBCF5 /* ApiError.swift in Sources */,
+				F1725C8027ECCA2F008CBCF5 /* FirebaseAnalyticRepository.swift in Sources */,
+				F1725C7B27ECC8EE008CBCF5 /* BaseAnalyticModel.swift in Sources */,
 				F109FECE276523F900054E1F /* LaunchViewController.swift in Sources */,
 				F120EA65279B904000EF39A6 /* LoginUseCase.swift in Sources */,
 				F1FD6956275F711000536406 /* AppDelegate.swift in Sources */,

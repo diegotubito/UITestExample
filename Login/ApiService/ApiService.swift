@@ -7,43 +7,11 @@
 
 import Foundation
 
-class ApiCallMock {
-    var error: APIError? = APIError.customError(message: "The password is invalid or the user does not have a password.", code: 503)
-    
-    public func api<T: Decodable>(completionBlock: @escaping (Result<T, APIError>) -> Void) {
-        let file = ProcessInfo.processInfo.environment["FILENAME"] ?? ""
-        let testFail = ProcessInfo.processInfo.arguments.contains("-testFail")
-        
-        guard let data = readLocalFile(bundle: .main, forName: file) else {
-            completionBlock(.failure(APIError.notFound))
-            return
-        }
-        
-        if testFail {
-            let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
-            let message : String = (json?["message"] as? String) ?? "no message"
-            let code : String = (json?["code"] as? String) ?? "no code"
-            
-            let error = APIError.customError(message: message, code: Int(code) ?? 0)
-            completionBlock(.failure(error))
-            return
-        }
-        
-        guard let register = try? JSONDecoder().decode(T.self, from: data) else {
-            completionBlock(.failure(APIError.serialize))
-            return
-        }
-        
-        completionBlock(.success(register))        
-    }
-    
-    private func readLocalFile(bundle: Bundle, forName name: String) -> Data? {
-        guard let bundlePath = bundle.path(forResource: name, ofType: "json") else {
-            fatalError("file \(name).json doesn't exist")
-        }
-        
-        return try? String(contentsOfFile: bundlePath).data(using: .utf8)
-    }
+final class NetworkApiClientConfig: NSObject {
+    var body: Data?
+    var path: String = ""
+    var query: String?
+    var method: String?
 }
 
 class ApiCall {
@@ -142,64 +110,5 @@ class ApiCall {
         }
         
         return URL(string: stringUrl)
-    }
-}
-
-final class NetworkApiClientConfig: NSObject {
-    var body: Data?
-    var path: String = ""
-    var query: String?
-    var method: String?
-}
-
-enum APIError: Equatable, Error, CustomStringConvertible {
-    case invalidToken
-    case serverError
-    case notFound
-    case notHandleError
-    case serialize
-    case request
-    case customError(message: String, code: Int)
-    
-    func message() -> String {
-        switch self {
-        case .invalidToken:
-            return "401_INVALID_TOKEN"
-        case .serverError:
-            return "500_SERVER_ERROR"
-        case .notFound:
-            return "404_NOT_FOUND"
-        case .notHandleError:
-            return "NOT_HANDLE_ERROR"
-        case .request:
-            return "REQUEST_ERROR"
-        case .serialize:
-            return "SERIALIZE_ERROR"
-        case .customError(message: let message, code: _):
-            return message
-        }
-    }
-    
-    func code() -> Int {
-        switch self {
-        case .invalidToken:
-            return 401
-        case .serverError:
-            return 500
-        case .notFound:
-            return 404
-        case .notHandleError:
-            return -1
-        case .serialize:
-            return 400
-        case .customError(message: _, code: let code):
-            return code
-        case .request:
-            return 400
-        }
-    }
-    
-    var description: String {
-        return "🧨⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽\nmessage: \(message())\ncode: \(code())\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺"
     }
 }
