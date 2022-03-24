@@ -30,14 +30,11 @@ class LoginViewModel: LoginViewModelProtocol {
     func login(userName: String, password: String)  {
         self.usecase.login(username: userName, password: password) { result in
             switch result {
-            case .success(let data):
-                guard let user = try? JSONDecoder().decode(User.self, from: data) else {
-                    return
-                }
+            case .success(let user):
                 self.onSuccess?(user)
                 break
             case .failure(let error):
-                self.onError?(error.localizedDescription)
+                self.onError?(error.message())
                 break
             }
         }

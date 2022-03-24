@@ -12,7 +12,6 @@
 		F109FED12765445E00054E1F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F109FED02765445E00054E1F /* Coordinator.swift */; };
 		F109FED42765496C00054E1F /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F109FED32765496C00054E1F /* LoginCoordinator.swift */; };
 		F109FED627654AAC00054E1F /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F109FED527654AAC00054E1F /* HomeCoordinator.swift */; };
-		F120C7812760BEAD00368418 /* LoginSuccessResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = F120C7802760BEAD00368418 /* LoginSuccessResponse.json */; };
 		F120C7852760C3B100368418 /* LoginSuccessResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = F120C7802760BEAD00368418 /* LoginSuccessResponse.json */; };
 		F120EA65279B904000EF39A6 /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F120EA64279B904000EF39A6 /* LoginUseCase.swift */; };
 		F1725C6727EC080B008CBCF5 /* LoginUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725C6627EC080B008CBCF5 /* LoginUseCaseTest.swift */; };
@@ -131,6 +130,7 @@
 			children = (
 				F1FD6963275F711200536406 /* Info.plist */,
 				F1FD695E275F711200536406 /* Assets.xcassets */,
+				F120C77D2760BE4000368418 /* Mock */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -240,7 +240,6 @@
 			children = (
 				F1FD696C275F711200536406 /* LoginTests.swift */,
 				F1725C6627EC080B008CBCF5 /* LoginUseCaseTest.swift */,
-				F120C77D2760BE4000368418 /* Mock */,
 			);
 			path = LoginTests;
 			sourceTree = "<group>";
@@ -275,8 +274,8 @@
 		F1FD698B275F775500536406 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				F1FD6992275FFCA100536406 /* LoginViewModel.swift */,
 				F18012C4279F7AC300D528F7 /* LoginModel.swift */,
+				F1FD6992275FFCA100536406 /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -411,7 +410,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F120C7812760BEAD00368418 /* LoginSuccessResponse.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

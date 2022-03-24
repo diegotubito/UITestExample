@@ -8,13 +8,18 @@
 import Foundation
 
 class ApiCallMock {
-    public func api(filename: String, completionBlock: @escaping (Result<Data, APIError>) -> Void) {
+    public func api<T: Decodable>(filename: String, completionBlock: @escaping (Result<T, APIError>) -> Void) {
         guard let data = readLocalFile(bundle: .main, forName: filename) else {
             completionBlock(.failure(APIError.notFound))
             return
         }
         
-        completionBlock(.success(data))
+        guard let register = try? JSONDecoder().decode(T.self, from: data) else {
+            completionBlock(.failure(APIError.serialize))
+            return
+        }
+        
+        completionBlock(.success(register))
     }
     
     private func readLocalFile(bundle: Bundle, forName name: String) -> Data? {
@@ -37,31 +42,26 @@ class ApiCall {
         config = NetworkApiClientConfig()
     }
     
-    // wrapper
-    public func apiCall<T: Decodable>(success: @escaping (T) -> (), fail: @escaping (APIError) ->()) {
+    // Generic Wrapper
+    public func apiCall<T: Decodable>(completion: @escaping (Result<T, APIError>) -> Void) {
         
         fetch { result in
             switch result {
             case .failure(let error):
-                fail(error)
+                completion(.failure(error))
                 break
             case .success(let data):
                 do {
                     let genericData = try JSONDecoder().decode(T.self, from: data)
-                    success(genericData)
+                    completion(.success(genericData))
                 } catch {
-                    fail(.serialize)
+                    completion(.failure(.serialize))
                 }
                 break
             }
         }
     }
-    
-    // wrapper
-    public func apiCallData(completion: @escaping CustomResult ) {
-        fetch { result in completion(result) }
-    }
-    
+  
     private func fetch(completion: @escaping (Result<Data, APIError>) -> Void) {
         guard let url = getUrl(withPath: config.path, query: config.query) else { fatalError("URL - incorrect format or missing string url") }
         guard let method = config.method else { fatalError("Method missing") }
@@ -109,10 +109,9 @@ class ApiCall {
         dataTask?.resume()
     }
     
-    func addBody<TRequest> (_ body: TRequest?) where TRequest: Encodable {
+    func addRequestBody<TRequest> (_ body: TRequest?) where TRequest: Encodable {
         config.body = try? JSONEncoder().encode(body)
     }
-    
     
     private func getHost() -> String {
         return "http://127.0.0.1:2999"

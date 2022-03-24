@@ -7,27 +7,26 @@
 
 import Foundation
 
-
-typealias CustomResult = (Result<Data, APIError>) -> Void
+typealias CustomResult<T: Decodable> = (Result<T, APIError>) -> Void
 
 protocol LoginRepositoryProtocol {
-    func doLogin(body: LoginDataSource.Request, token: String, completion: @escaping CustomResult)
+    func doLogin(requestBody: LoginDataSource.Request, token: String, completion: @escaping CustomResult<User>)
 }
 
 class LoginRepository: ApiCall, LoginRepositoryProtocol {
  
-    func doLogin(body: LoginDataSource.Request, token: String, completion: @escaping CustomResult) {
+    func doLogin(requestBody: LoginDataSource.Request, token: String, completion: @escaping CustomResult<User>) {
         config.path = "v1/firebase/auth/login"
         config.method = "POST"
         
-        addBody(body)
+        addRequestBody(requestBody)
         
-        apiCallData { result in completion(result) }
+        apiCall { result in completion(result) }
     }
 }
 
 class LoginRepositoryMock: ApiCallMock, LoginRepositoryProtocol {
-    func doLogin(body: LoginDataSource.Request, token: String, completion: @escaping CustomResult) {
+    func doLogin(requestBody: LoginDataSource.Request, token: String, completion: @escaping CustomResult<User>) {
         api(filename: "LoginSuccessResponse") { result in
             completion(result)
         }

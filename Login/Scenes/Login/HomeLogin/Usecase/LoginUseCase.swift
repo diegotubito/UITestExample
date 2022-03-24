@@ -7,10 +7,9 @@
 
 import Foundation
 
-
 protocol LoginUseCaseProtocol: AnyObject {
     init(repository: LoginRepositoryProtocol)
-    func login(username: String, password: String, completion: @escaping CustomResult)
+    func login(username: String, password: String, completion: @escaping CustomResult<User>)
 }
 
 class LoginUseCase: LoginUseCaseProtocol {
@@ -20,9 +19,9 @@ class LoginUseCase: LoginUseCaseProtocol {
         self.repository = repository
     }
     
-    func login(username: String, password: String, completion: @escaping CustomResult) {
-        let input = LoginDataSource.Request(email: username, password: password)
-        repository.doLogin(body: input, token: "") { result in
+    func login(username: String, password: String, completion: @escaping CustomResult<User>) {
+        let requestBody = LoginDataSource.Request(email: username, password: password)
+        repository.doLogin(requestBody: requestBody, token: "") { result in
             completion(result)
         }
         return 
@@ -36,9 +35,9 @@ class LoginUseCaseMock: LoginUseCaseProtocol {
         self.repository = repository
     }
     
-    func login(username: String, password: String, completion: @escaping CustomResult) {
+    func login(username: String, password: String, completion: @escaping CustomResult<User>) {
         let input = LoginDataSource.Request(email: username, password: password)
-        repository.doLogin(body: input, token: "") { result in
+        repository.doLogin(requestBody: input, token: "") { result in
             completion(result)
         }
         return
