@@ -21,14 +21,15 @@ class LoginUITests: XCTestCase {
         let passwordTextField = app.textFields["loginPasswordTextField"]
         
         usernameTextField.tap()
-        usernameTextField.typeText("diego")
+        usernameTextField.typeText("diegodavid@icloud.com")
+        
         
         passwordTextField.tap()
-        passwordTextField.typeText("admin")
+        passwordTextField.typeText("admin1234")
         
         app.buttons["loginButton"].tap()
         let loginResultLabel = app.staticTexts["loginResultLabel"]
-          
-        XCTAssertEqual("gym develop", loginResultLabel.label)
+        
+        XCTAssertEqual("Develop - ddg - from mock file", loginResultLabel.label)
      }
 }

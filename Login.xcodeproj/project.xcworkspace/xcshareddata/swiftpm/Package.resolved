@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "AnalyticPatternLibrary",
+        "repositoryURL": "https://github.com/diegotubito/analyticPatternLibrary.git",
+        "state": {
+          "branch": "main",
+          "revision": "273038e652417c752be3aa01f029b542bce8ba72",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

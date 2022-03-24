@@ -81,9 +81,6 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="loginButton"/>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="loginButtonDidTapped:" destination="5iT-nS-dXU" eventType="touchUpInside" id="fNS-ki-ooj"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ResultLabel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LuW-Xe-gyD">
                                 <rect key="frame" x="48" y="364.5" width="318" height="20.5"/>
@@ -114,6 +111,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="XMz-sP-C7S"/>
                     <connections>
+                        <outlet property="buttonOutlet" destination="oTG-NB-W8h" id="db1-Kn-wpg"/>
                         <outlet property="password" destination="DPc-eV-vAz" id="p4F-zS-DJb"/>
                         <outlet property="resultLabel" destination="LuW-Xe-gyD" id="btp-Fv-wF6"/>
                         <outlet property="userName" destination="C4n-Wg-39s" id="yIU-O4-gZW"/>

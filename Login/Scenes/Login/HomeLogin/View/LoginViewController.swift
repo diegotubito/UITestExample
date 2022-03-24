@@ -18,6 +18,7 @@ class LoginViewController: BaseViewController<LoginViewControllerAnalytics>, Sto
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet weak var buttonOutlet: UIButton!
     
     weak var coordinator: LoginCoordinator?
     private var viewModel: LoginViewModelProtocol!
@@ -38,10 +39,16 @@ class LoginViewController: BaseViewController<LoginViewControllerAnalytics>, Sto
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        buttonOutlet.addTarget(self, action: #selector(buttonTapped), for: .touchDown)
         viewModel = LoginViewModel()
         viewModelBind()
         
         analytics.someCustomEventFromLogin()
+    }
+    
+    @objc func buttonTapped() {
+        viewModel.login(userName: userName.text ?? "", password: password.text ?? "")
     }
     
     private func viewModelBind() {
@@ -59,10 +66,6 @@ class LoginViewController: BaseViewController<LoginViewControllerAnalytics>, Sto
         }
     }
 
-    @IBAction func loginButtonDidTapped(_ sender: Any) {
-        viewModel.login(userName: userName.text ?? "", password: password.text ?? "")
-    }
-    
     private func routeToHome() {
         let bundle = Bundle(for: HomeViewController.self)
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)

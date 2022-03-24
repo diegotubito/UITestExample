@@ -7,22 +7,40 @@
 
 import Foundation
 
+
 protocol LoginUseCaseProtocol: AnyObject {
-    init(repository: ApiServiceProtocol)
-    func login(username: String, password: String, completionBlock: @escaping (Result<User, APIError>) -> Void)
+    init(repository: LoginRepositoryProtocol)
+    func login(username: String, password: String, completion: @escaping CustomResult)
 }
 
 class LoginUseCase: LoginUseCaseProtocol {
-    var repository: ApiServiceProtocol
+    var repository: LoginRepositoryProtocol
     
-    required init(repository: ApiServiceProtocol = ApiServiceFactory.create()) {
+    required init(repository: LoginRepositoryProtocol = LoginRepository()) {
         self.repository = repository
     }
     
-    func login(username: String, password: String, completionBlock: @escaping (Result<User, APIError>) -> Void) {
-        let request = Request.endpoint(to: .Login(userName: username, password: password))
-        repository.fetch(request: request, completionBlock: {response in
-            completionBlock(response)
-        })
+    func login(username: String, password: String, completion: @escaping CustomResult) {
+        let input = LoginDataSource.Request(email: username, password: password)
+        repository.doLogin(body: input, token: "") { result in
+            completion(result)
+        }
+        return 
+    }
+}
+
+class LoginUseCaseMock: LoginUseCaseProtocol {
+    var repository: LoginRepositoryProtocol
+    
+    required init(repository: LoginRepositoryProtocol = LoginRepositoryMock() ) {
+        self.repository = repository
+    }
+    
+    func login(username: String, password: String, completion: @escaping CustomResult) {
+        let input = LoginDataSource.Request(email: username, password: password)
+        repository.doLogin(body: input, token: "") { result in
+            completion(result)
+        }
+        return
     }
 }

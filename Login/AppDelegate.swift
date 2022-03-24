@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AnalyticPatternLibrary
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         
+        let analityc = AnalyticPatternLibrary()
+        print(analityc.text)
         return true
     }
 
