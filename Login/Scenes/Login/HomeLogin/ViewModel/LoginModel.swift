@@ -8,5 +8,5 @@
 import Foundation
 
 struct LoginModel {
-    var user: User?
+    var user: User
 }

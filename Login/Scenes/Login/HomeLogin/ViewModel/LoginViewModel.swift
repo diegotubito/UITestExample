@@ -11,27 +11,25 @@ protocol LoginViewModelProtocol {
     init(usecase: LoginUseCaseProtocol)
     func login(userName: String, password: String)
     
-    var onSuccess: ((User) -> ())? { get set }
+    var onSuccess: ((LoginModel) -> ())? { get set }
     var onError: ((String) -> ())? { get set }
 }
 
 class LoginViewModel: LoginViewModelProtocol {
-    var onSuccess: ((User) -> ())?
+    var onSuccess: ((LoginModel) -> ())?
     var onError: ((String) -> ())?
     
     var usecase: LoginUseCaseProtocol
-    var model: LoginModel
     
-    required init(usecase: LoginUseCaseProtocol = LoginUseCaseFactory.create()) {
+    required init(usecase: LoginUseCaseProtocol = LoginUseCase() ) {
         self.usecase = usecase
-        self.model = LoginModel()
     }
     
     func login(userName: String, password: String)  {
         self.usecase.login(username: userName, password: password) { result in
             switch result {
             case .success(let user):
-                self.onSuccess?(user)
+                self.onSuccess?(LoginModel(user: user))
                 break
             case .failure(let error):
                 self.onError?(error.message())
@@ -40,16 +38,3 @@ class LoginViewModel: LoginViewModelProtocol {
         }
     }
 }
-
-class LoginUseCaseFactory {
-    static let shared = LoginUseCaseFactory()
-    
-    static func create() -> LoginUseCaseProtocol {
-        if ProcessInfo.processInfo.environment["ENV"] == "NOT_TESTING" {
-            return LoginUseCase()
-        }
-        return LoginUseCaseMock()
-    }
-}
-
-

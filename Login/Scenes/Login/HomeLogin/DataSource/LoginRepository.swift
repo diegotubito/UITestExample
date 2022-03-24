@@ -32,3 +32,14 @@ class LoginRepositoryMock: ApiCallMock, LoginRepositoryProtocol {
         }
     }
 }
+
+class LoginRepositoryFactory {
+    static let shared = LoginRepositoryFactory()
+    
+    static func create() -> LoginRepositoryProtocol {
+        let testing = ProcessInfo.processInfo.arguments.contains("-uiTest")
+
+        return testing ? LoginRepositoryMock() : LoginRepository()
+    }
+}
+

@@ -53,9 +53,9 @@ class LoginViewController: BaseViewController<LoginViewControllerAnalytics>, Sto
     
     private func viewModelBind() {
         
-        viewModel.onSuccess = { [weak self] user in
+        viewModel.onSuccess = { [weak self] model in
             DispatchQueue.main.async {
-                self?.resultLabel.text = user.displayName
+                self?.resultLabel.text = model.user.displayName
             }
         }
         
@@ -139,8 +139,6 @@ class AnalyticsRepository: AnalyticsRepositoryProtocol {
         completion()
     }
 }
-
-
 
 // include firebase analytics sdk and uncomment code
 //import FirebaseAnalytics

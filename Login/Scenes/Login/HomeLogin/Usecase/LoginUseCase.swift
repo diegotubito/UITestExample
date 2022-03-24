@@ -15,7 +15,7 @@ protocol LoginUseCaseProtocol: AnyObject {
 class LoginUseCase: LoginUseCaseProtocol {
     var repository: LoginRepositoryProtocol
     
-    required init(repository: LoginRepositoryProtocol = LoginRepository()) {
+    required init(repository: LoginRepositoryProtocol = LoginRepositoryFactory.create() ) {
         self.repository = repository
     }
     
@@ -25,21 +25,5 @@ class LoginUseCase: LoginUseCaseProtocol {
             completion(result)
         }
         return 
-    }
-}
-
-class LoginUseCaseMock: LoginUseCaseProtocol {
-    var repository: LoginRepositoryProtocol
-    
-    required init(repository: LoginRepositoryProtocol = LoginRepositoryMock() ) {
-        self.repository = repository
-    }
-    
-    func login(username: String, password: String, completion: @escaping CustomResult<User>) {
-        let input = LoginDataSource.Request(email: username, password: password)
-        repository.doLogin(requestBody: input, token: "") { result in
-            completion(result)
-        }
-        return
     }
 }

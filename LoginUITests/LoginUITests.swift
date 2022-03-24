@@ -8,11 +8,17 @@
 import XCTest
 
 class LoginUITests: XCTestCase {
+    var app: XCUIApplication!
+    
+    override func setUp() async throws {
+        app = XCUIApplication()
+        app.launchArguments = ["-uiTest"]
+    }
+    
     func testLoginSuccess() throws {
         // UI tests must launch the application that they test.
-        let app = XCUIApplication()
         // Mock response filename
-        app.launchEnvironment = ["FILENAME":"LoginSuccessResponse"]
+        app.launchEnvironment = ["FILENAME":"login_success"]
         app.launch()
 
         // Use recording to get started writing UI tests.
@@ -38,11 +44,10 @@ class LoginUITests: XCTestCase {
     
     func testLoginWrongPassword() throws {
         // UI tests must launch the application that they test.
-        let app = XCUIApplication()
         // mock server will send a failure response
-        app.launchArguments = ["-testFail"]
+        app.launchArguments.append("-testFail")
         // Mock response filename
-        app.launchEnvironment = ["FILENAME":"LoginWrongPassword"]
+        app.launchEnvironment = ["FILENAME":"login_password_fail"]
         app.launch()
         
         // Use recording to get started writing UI tests.
